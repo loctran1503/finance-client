@@ -1,57 +1,76 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { ReactNode, useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NoneLayout from "./components/Layouts/NoneLayout";
+import Loader from "./components/Global/Loader";
+import NotFound from "./pages/NotFound";
+import { privateRoutes, publicRoutes } from "./routes";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import { useAppDispatch, useAppSelector } from "./store/hook";
+import { authSelector, checkAuthenticate } from "./store/reducers/authSlice";
+import { UserResponse } from "./utils/types/api";
 
 function App() {
+  const dispatch = useAppDispatch();
+  const { isAuthenticated } = useAppSelector(authSelector);
+  useEffect(() => {
+ 
+    const checkAuth = async () => {
+    dispatch(checkAuthenticate())
+    };
+    checkAuth();
+  }, [isAuthenticated]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <Loader>
+        <BrowserRouter>
+          <Routes>
+            {publicRoutes.map((route, index) => {
+              const Page = route.component;
+              const Layout: ({
+                children,
+              }: {
+                children: ReactNode;
+              }) => JSX.Element = route.layout || NoneLayout;
+
+              return (
+                <Route
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  }
+                  key={index}
+                />
+              );
+            })}
+
+            {privateRoutes.map((route, index) => {
+              const Page = route.component;
+              const Layout: ({
+                children,
+              }: {
+                children: ReactNode;
+              }) => JSX.Element = route.layout || NoneLayout;
+
+              return (
+                <Route
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <ProtectedRoute component={Page} />
+                    </Layout>
+                  }
+                  key={index}
+                />
+              );
+            })}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </Loader>
+    </>
   );
 }
 

@@ -1,0 +1,38 @@
+.wrapper{
+ 
+    background-color:var(--background-color);
+}
+.container{
+    min-height: 100vh;
+    padding: 40px 12px;
+    background-color: white;
+}
+.userProfile{
+    display: flex;
+    .userAvatar{
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        padding: 8px;
+        border: 1px solid #dbdbdb;
+
+    }
+    .userName{
+        font-weight: 600;
+        font-size: 1.6rem;
+        margin-left: 20px;
+    }
+    
+}
+.userController{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    .btnLogout{
+        color: white;
+        font-weight: 700;
+        background-color: var(--pink-color);
+        font-size: 1.4rem;
+    }
+}

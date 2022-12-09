@@ -1,0 +1,115 @@
+.wrapper{
+    border-bottom: 1px solid #f5f7f7;
+  
+}
+.container {
+    padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  .navbarLeft {
+    display: flex;
+    align-items: center;
+    .leftItemContainer {
+      display: flex;
+      align-items: center;
+      .leftItem {
+        padding: 0 12px;
+        font-weight: 600;
+      }
+    }
+    .logo {
+      width: auto;
+      height: 40px;
+      margin-right: 12px;
+    }
+    .leftItemContainer {
+      height: 100%;
+    }
+  }
+  .navbarRight {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    .languageContainer {
+      margin-right: 20px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      position: relative;
+      
+      &::after{
+        position: absolute;
+        display: block;
+        content: "";
+        height: 20px;
+        width: 100%;
+        top: 95%;
+        background-color: transparent;
+       
+    }
+    &:hover .changeLanguageContainer{
+        transform: scale(1);
+    }
+      .languageDisplay{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+       
+       
+        .languageIcon {
+            width: 0px;
+            margin-left: 6px;
+      
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+    
+            border-top: 5px solid var(--text);
+          }
+      }
+      .changeLanguageContainer{
+        
+        transform: scale(0);
+        transform-origin: 80% top;
+        border: 1px solid #dbdbdb;
+        transition: all 0.3s ease;
+        position: absolute;
+        font-weight: 600;
+        border-radius: 8px;
+        background-color: white;
+        z-index: 1;
+        right: -8%;
+    top: 134%;
+    
+        .changeLanguageItem{
+            padding: 12px 18px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            &:hover{
+                background-color: var(--blur-color);
+            }
+            &:first-child{
+                
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+            &:last-child{
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+                border-bottom: none;
+            }
+        }
+      }
+      
+    }
+    .userProfile{
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+    
+    
+  }
+}
