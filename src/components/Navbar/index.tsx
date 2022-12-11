@@ -22,7 +22,7 @@ const Navbar = () => {
           <div className="col l-12 m-12 c-12">
             <div className={styles.container}>
               <div className={clsx(styles.navbarLeft)}>
-                <img className={styles.logo} src={bitcoinLogo} />
+                <img className={styles.logo} src={bitcoinLogo} onClick={() =>{navigate('/')}} />
                 <div
                   className={clsx(
                     styles.leftItemContainer,

@@ -1,4 +1,5 @@
-const urlServer = 'http://localhost:4000'
+// const urlServer = 'http://localhost:4000'
+const urlServer = 'https://gentlevn.com/finance/api'
 export const apiLink ={
     users:{
         signUp:`${urlServer}/users/signUp`,
