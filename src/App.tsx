@@ -25,7 +25,7 @@ function App() {
  
   useEffect(() =>{
     if(!isLoading){
-      const socket = io( 'https://google.com',isAuthenticated ? {
+      const socket = io( socketUrl,isAuthenticated ? {
         auth:{
           token:access_token as string
         },
