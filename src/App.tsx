@@ -29,7 +29,8 @@ function App() {
         auth:{
           token:access_token as string
         },
-        secure:true
+        secure:true,
+        transports: ['websocket']
       } : { secure:true},);
 
      
