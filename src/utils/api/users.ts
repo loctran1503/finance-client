@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DefaultResponse, SignUpByPassWord, User, UserResponse } from "../types/api";
+import { DefaultResponse, LoginByPassWord, SignUpByPassWord, User, UserResponse } from "../types/api";
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import { apiLink } from "./apiLink";
 import { app } from "../config/firebase";
@@ -9,6 +9,7 @@ const auth = getAuth(app);
 export const signUpApi = async ({
   email,
   password,
+  name
 }: SignUpByPassWord): Promise<UserResponse> => {
   return await createUserWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
@@ -19,7 +20,7 @@ export const signUpApi = async ({
         url,
         {
           firebaseId: user.uid,
-          name: "Member",
+          name,
           avatar: logo,
         },
         {
@@ -64,7 +65,7 @@ export const signUpApi = async ({
 export const loginApi = async ({
   email,
   password,
-}: SignUpByPassWord): Promise<UserResponse> => {
+}: LoginByPassWord): Promise<UserResponse> => {
   return await signInWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
       // Signed in

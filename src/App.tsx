@@ -8,17 +8,36 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import { useAppDispatch, useAppSelector } from "./store/hook";
 import { authSelector, checkAuthenticate } from "./store/reducers/authSlice";
 import { UserResponse } from "./utils/types/api";
+import {io} from 'socket.io-client'
+import { appSelector, setSocket } from "./store/reducers/appSlice";
+import { socketUrl } from "./utils/api/apiLink";
 
 function App() {
   const dispatch = useAppDispatch();
-  const { isAuthenticated } = useAppSelector(authSelector);
+  const { isAuthenticated,isLoading,access_token } = useAppSelector(authSelector);
+
   useEffect(() => {
- 
     const checkAuth = async () => {
     dispatch(checkAuthenticate())
     };
     checkAuth();
   }, [isAuthenticated]);
+ 
+  useEffect(() =>{
+    if(!isLoading){
+      const socket = io( socketUrl,isAuthenticated ? {
+        auth:{
+          token:access_token as string
+        }
+      } : {});
+
+     
+  
+    socket.on('connect', () => {
+      dispatch(setSocket(socket))
+    });
+    }
+  },[isAuthenticated,isLoading])
 
   return (
     <>

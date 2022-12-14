@@ -8,7 +8,7 @@ import { useAppDispatch } from "../../store/hook";
 import { userLogin } from "../../store/reducers/authSlice";
 
 import { customModalStyles } from "../../utils/constants/modal";
-import { SignUpByPassWord, UserResponse } from "../../utils/types/api";
+import { LoginByPassWord, SignUpByPassWord, UserResponse } from "../../utils/types/api";
 import InputCustom from "../Global/InputCustom";
 import { authSchema } from "../Global/InputCustom/Schemas";
 import styles from "./styles.module.scss";
@@ -27,12 +27,12 @@ const Login = () => {
   const dispatch = useAppDispatch();
 
   // Login
-  const initialValues: SignUpByPassWord = { email: "", password: "" };
+  const initialValues: LoginByPassWord = { email: "", password: "" };
   //Displaying error
   const [errorMessage,setErrorMessage] = useState<string | null>(null)
 
   // Submit
-  const handleSubmit = async (values : SignUpByPassWord,actions : FormikHelpers<SignUpByPassWord>) => {
+  const handleSubmit = async (values : LoginByPassWord,actions : FormikHelpers<LoginByPassWord>) => {
     setErrorMessage(null)
     dispatch(userLogin(values))
       .then((data) => {

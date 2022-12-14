@@ -28,7 +28,7 @@ const SignUp = () => {
   const dispatch = useAppDispatch()
 
   // SignUp
-  const initialValues: SignUpByPassWord = { email: "", password: "" };
+  const initialValues: SignUpByPassWord = { email: "", password: "",name:"" };
   //Displaying error
   const [errorMessage,setErrorMessage] = useState<string | null>(null)
 
@@ -91,6 +91,12 @@ const SignUp = () => {
             {({isSubmitting}) => (
               <Form>
                 {errorMessage && <h3 className="error-message-header">{errorMessage}</h3>}
+                <InputCustom
+                  type="text"
+                  label="Username"
+                  placeholder="Enter your name..."
+                  name="name"
+                />
                 <InputCustom
                   type="text"
                   label="Email"

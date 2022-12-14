@@ -1,9 +1,13 @@
+
+
 export interface SignUpByPassWord{
     email:string;
     password:string;
+    name:string
 }
 export interface LoginByPassWord{
-    firebaseId:string
+    email:string;
+    password:string
 }
 
 export interface User{

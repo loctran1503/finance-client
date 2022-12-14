@@ -1,10 +1,14 @@
-// const urlServer = 'http://localhost:4000'
-const urlServer = 'https://gentlevn.com/finance/api'
+ //const severUrl = 'http://localhost:4444/finance/api'
+  const severUrl = 'https://gentlevn.com/finance/api'
+
+//  export const socketUrl ='http://localhost:4444'
+ export const socketUrl ='https://gentlevn.com/finance/api'
+
 export const apiLink ={
     users:{
-        signUp:`${urlServer}/users/signUp`,
-        login:`${urlServer}/users/login`,
-        checkAuth:`${urlServer}/users/checkAuth`,
-        logout:`${urlServer}/users/logout`,
+        signUp:`${severUrl}/users/signUp`,
+        login:`${severUrl}/users/login`,
+        checkAuth:`${severUrl}/users/checkAuth`,
+        logout:`${severUrl}/users/logout`,
     }
 }
