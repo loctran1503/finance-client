@@ -25,18 +25,19 @@ function App() {
  
   useEffect(() =>{
     if(!isLoading){
-      const socket = io( socketUrl,isAuthenticated ? {
+      const socket = io( 'wss://gentlevn.com/finance/api',isAuthenticated ? {
         auth:{
           token:access_token as string
         },
         
-        transports: ['websocket']
+        transports: ['websocket'],
+        path:'/finance/api/socket.io'
       } : { transports: ['websocket']});
 
      
   
     socket.on('connect', () => {
-      console.log('Socket connetted');
+      console.log('Socket connected');
       
       dispatch(setSocket(socket))
     });
