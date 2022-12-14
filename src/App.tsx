@@ -28,8 +28,9 @@ function App() {
       const socket = io( socketUrl,isAuthenticated ? {
         auth:{
           token:access_token as string
-        }
-      } : {});
+        },
+        secure:true
+      } : { secure:true},);
 
      
   
