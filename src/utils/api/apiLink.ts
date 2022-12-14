@@ -2,7 +2,7 @@
   const severUrl = 'https://gentlevn.com/finance/api'
 
  // export const socketUrl ='http://localhost:4444'
- export const socketUrl ='https://gentlevn.com/finance/api'
+ export const socketUrl ='https://gentlevn.com'
 
 export const apiLink ={
     users:{
