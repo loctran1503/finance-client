@@ -25,17 +25,19 @@ function App() {
  
   useEffect(() =>{
     if(!isLoading){
-      const socket = io( '',isAuthenticated ? {
+      const socket = io( 'https://google.com',isAuthenticated ? {
         auth:{
           token:access_token as string
         },
-        secure:true,
+        
         transports: ['websocket']
-      } : { secure:true},);
+      } : { transports: ['websocket']});
 
      
   
     socket.on('connect', () => {
+      console.log('Socket connetted');
+      
       dispatch(setSocket(socket))
     });
     }
