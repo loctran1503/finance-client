@@ -8,41 +8,43 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import { useAppDispatch, useAppSelector } from "./store/hook";
 import { authSelector, checkAuthenticate } from "./store/reducers/authSlice";
 import { UserResponse } from "./utils/types/api";
-import {io} from 'socket.io-client'
+import { io } from "socket.io-client";
 import { appSelector, setSocket } from "./store/reducers/appSlice";
 import { socketUrl } from "./utils/api/apiLink";
 
 function App() {
   const dispatch = useAppDispatch();
-  const { isAuthenticated,isLoading,access_token } = useAppSelector(authSelector);
+  const { isAuthenticated, isLoading, access_token } =
+    useAppSelector(authSelector);
 
   useEffect(() => {
     const checkAuth = async () => {
-    dispatch(checkAuthenticate())
+      dispatch(checkAuthenticate());
     };
     checkAuth();
   }, [isAuthenticated]);
- 
-  useEffect(() =>{
-    if(!isLoading){
-      const socket = io( 'wss://gentlevn.com/finance/api',isAuthenticated ? {
-        auth:{
-          token:access_token as string
-        },
-        
-        transports: ['websocket'],
-        path:'/finance/api/socket.io'
-      } : { transports: ['websocket']});
 
-     
-  
-    socket.on('connect', () => {
-      console.log('Socket connected');
-      
-      dispatch(setSocket(socket))
-    });
+  useEffect(() => {
+    if (!isLoading) {
+      const socket = io("wss://gentlevn.com/finance/api", {
+        transports: ["websocket"],
+        path: "/finance/api/socket.io",
+        ...(isAuthenticated
+          ? {
+              auth: {
+                token: access_token as string,
+              },
+            }
+          : { }),
+      });
+
+      socket.on("connect", () => {
+        console.log("Socket connected");
+
+        dispatch(setSocket(socket));
+      });
     }
-  },[isAuthenticated,isLoading])
+  }, [isAuthenticated, isLoading]);
 
   return (
     <>
