@@ -25,7 +25,7 @@ function App() {
  
   useEffect(() =>{
     if(!isLoading){
-      const socket = io( socketUrl,isAuthenticated ? {
+      const socket = io( '',isAuthenticated ? {
         auth:{
           token:access_token as string
         },
