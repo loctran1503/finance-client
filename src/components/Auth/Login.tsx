@@ -10,7 +10,7 @@ import { userLogin } from "../../store/reducers/authSlice";
 import { customModalStyles } from "../../utils/constants/modal";
 import { LoginByPassWord, SignUpByPassWord, UserResponse } from "../../utils/types/api";
 import InputCustom from "../Global/InputCustom";
-import { authSchema } from "../Global/InputCustom/Schemas";
+import { authSchema, loginSchema } from "../Global/InputCustom/Schemas";
 import styles from "./styles.module.scss";
 
 const Login = () => {
@@ -81,8 +81,11 @@ const Login = () => {
           <h2 className={styles.header}>Log In</h2>
           <Formik
             initialValues={initialValues}
-            validationSchema={authSchema}
+            validationSchema={loginSchema}
             onSubmit={(values, actions) => {
+           
+              
+              
               handleSubmit(values,actions)
               }}
           >
@@ -105,6 +108,8 @@ const Login = () => {
                   className={clsx(styles.btnSubmit)}
                   type="submit"
                   disabled={isSubmitting}
+                  onClick={() =>{console.log(123);
+                  }}
                 >
                   {isSubmitting ? 'Loading...' : 'Log In'}
                 </button>

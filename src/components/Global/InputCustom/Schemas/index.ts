@@ -11,3 +11,13 @@ export const authSchema = yup.object().shape({
     .matches(passwordRules, { message: "Please create a stronger password" })
     .required("Required"),
 })
+
+export const loginSchema = yup.object().shape({
+
+    email: yup.string().email("Please enter a valid email").required("Required"),
+    password: yup
+    .string()
+    .min(6)
+    .matches(passwordRules, { message: "Please create a stronger password" })
+    .required("Required"),
+})
