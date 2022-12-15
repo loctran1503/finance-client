@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     if (!isLoading) {
-      const socket = io("wss://gentlevn.com/finance/api", {
+      const socket = io(socketUrl, {
         transports: ["websocket"],
         path: "/finance/api/socket.io",
         ...(isAuthenticated
@@ -43,6 +43,10 @@ function App() {
 
         dispatch(setSocket(socket));
       });
+
+      return () =>{
+        socket.disconnect()
+      }
     }
   }, [isAuthenticated, isLoading]);
 
