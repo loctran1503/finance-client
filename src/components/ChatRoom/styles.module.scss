@@ -1,98 +1,103 @@
+.container {
+  border-radius: 12px;
+  margin: 0 12px;
+  border: 1px solid var(--border-gray);
+  background-color: white;
+  .header {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .body {
+    display: "flex";
+    flex-direction: "column-reverse";
+    overflow: auto;
+    border-top: 1px solid var(--border-gray);
+  }
+  //Receiver
+  .receiver {
+    margin-right: 30%;
+    padding: 12px;
+    display: flex;
+    align-items: flex-start;
 
-.container{
+    .timestamps {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #bbbaba;
+    }
+    .receiverName {
+      font-size: 1.6rem;
+      font-weight: 700;
+      white-space: nowrap;
+      color: var(--blue-color);
+      padding: 0 10px 0 5px;
+    }
+    .receiverMessage {
+      font-size: 1.6rem;
+      color: var(--text);
+    }
+  }
+  //Sender
+  .sender {
+    padding: 12px;
+    align-items: flex-start;
+    margin-left: 30%;
+    display: flex;
+    justify-content: flex-end;
+    .timestamps {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #bbbaba;
+      margin-left: 8px;
+    }
+
+    .senderMessage {
+      padding: 8px 16px;
+      border-radius: 16px;
+      background-color: var(--gray-less);
+      font-size: 1.6rem;
+      color: var(--text);
+    }
+  }
+  // Footer
+  .footer {
+    padding: 12px;
+    border-top: 1px solid var(--border-gray);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    .messageInput {
+      flex: 1;
+      margin-left: 20px;
+      outline: none;
+      border-radius: 12px;
+      border: none;
+      background-color: var(--gray-less);
+      padding: 8px 18px;
+      color: var(--gray-color);
+      font-weight: 500;
+      font-size: 1.4rem;
+    }
     
-    border-radius: 12px;
-    margin: 0 12px;
-    border: 1px solid var(--border-gray);
-    background-color: white;
-    .header{
-        
-        text-align: center;
-        padding: 20px 0;
-        font-size: 2rem;
-        font-weight: 700;
+    .btnSendMessage {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--blue-color);
+      margin-left: 20px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
     }
-    .body{
-        border-top: 1px solid var(--border-gray);
+    .messageBlockingActive{
+      min-width: 40px;
+      user-select: none;
+      cursor: not-allowed;
+      color: red;
+      text-align: center;
     }
-    //Receiver
-    .receiver{
-        margin-right: 30%;
-        padding: 12px;
-        display: flex;
-        align-items: flex-start;
-        
-        .timestamps{
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: #bbbaba;
-        }
-        .receiverName{
-            font-size: 1.6rem;
-            font-weight: 700;
-            white-space: nowrap;
-            color: var(--blue-color);
-            padding: 0 10px 0 5px;
-        }
-        .receiverMessage{
-            font-size: 1.6rem;
-            color: var(--text);
-        }
-        
-    }
-    //Sender
-    .sender{
-        padding: 12px;
-       align-items: flex-start;
-        margin-left: 30%;
-         display: flex;
-         justify-content: flex-end;
-        .timestamps{
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: #bbbaba;
-            margin-left: 8px;
-        }
-        
-        .senderMessage{
-            padding: 8px 16px;
-            border-radius: 16px;
-            background-color: var(--gray-less);
-            font-size: 1.6rem;
-            color: var(--text);
-        }
-        
-    }
-    // Footer
-    .footer{
-        padding: 12px;
-        border-top: 1px solid var(--border-gray);
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        .messageInput{
-            flex: 1;
-            margin-left: 20px;
-            outline: none;
-            border-radius: 12px;
-            border: none;
-            background-color: var(--gray-less);
-            padding: 8px 18px;
-            color: var(--gray-color);
-            font-weight: 500;
-            font-size: 1.4rem;
-        }
-        .btnSendMessage{
-             font-size: 1.6rem;
-             font-weight: 600;
-             color: var(--blue-color);
-             margin-left: 20px;
-            cursor: pointer;
-            &:hover{
-                opacity: 0.8;
-            }
-        }
-    }
-
+  }
 }

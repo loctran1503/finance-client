@@ -22,10 +22,8 @@ export const signUpApi = async ({
           firebaseId: user.uid,
           name,
           avatar: logo,
-        },
-        {
-          withCredentials: true,
         }
+        
       );
       if (!serverResult.data.success) {
         return {
@@ -76,9 +74,6 @@ export const loginApi = async ({
         {
           firebaseId: user.uid,
           
-        },
-        {
-          withCredentials: true,
         }
       );
       if (!serverResult.data.success) {
@@ -93,7 +88,7 @@ export const loginApi = async ({
       if (serverResult.data.access_token)
         axios.defaults.headers.common["Authorization"] =
           serverResult.data.access_token;
-      console.log(serverResult.data)
+    
       return {
         success: true,
         message: serverResult.data.message,
@@ -120,7 +115,7 @@ export const logoutApi = async() : Promise<DefaultResponse> =>{
   try {
     const serverResult = await axios.post<DefaultResponse>(url,{
 
-    },{withCredentials:true})
+    })
     return{
       success:serverResult.data.success,
       code:serverResult.data.code,

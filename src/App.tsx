@@ -1,107 +1,74 @@
 import React, { ReactNode, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NoneLayout from "./components/Layouts/NoneLayout";
 import Loader from "./components/Global/Loader";
+import NoneLayout from "./components/Layouts/NoneLayout";
 import NotFound from "./pages/NotFound";
 import { privateRoutes, publicRoutes } from "./routes";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { useAppDispatch, useAppSelector } from "./store/hook";
-import { authSelector, checkAuthenticate } from "./store/reducers/authSlice";
-import { UserResponse } from "./utils/types/api";
-import { io } from "socket.io-client";
-import { appSelector, setSocket } from "./store/reducers/appSlice";
-import { socketUrl } from "./utils/api/apiLink";
+import { appSelector } from "./store/reducers/appSlice";
+import { authSelector } from "./store/reducers/authSlice";
 
 function App() {
-  const dispatch = useAppDispatch();
-  const { isAuthenticated, isLoading, access_token } =
-    useAppSelector(authSelector);
 
   useEffect(() => {
-    const checkAuth = async () => {
-      dispatch(checkAuthenticate());
-    };
-    checkAuth();
-  }, [isAuthenticated]);
-
-  useEffect(() => {
-    if (!isLoading) {
-      const socket = io(socketUrl, {
-        transports: ["websocket"],
-        path: "/finance/api/socket.io",
-        ...(isAuthenticated
-          ? {
-              auth: {
-                token: access_token as string,
-              },
-            }
-          : { }),
-      });
-
-      socket.on("connect", () => {
-        console.log("Socket connected");
-
-        dispatch(setSocket(socket));
-      });
-
-      return () =>{
-        socket.disconnect()
-      }
-    }
-  }, [isAuthenticated, isLoading]);
+    //console.log("App rendering");
+  });
 
   return (
     <>
-      <Loader>
-        <BrowserRouter>
-          <Routes>
-            {publicRoutes.map((route, index) => {
-              const Page = route.component;
-              const Layout: ({
-                children,
-              }: {
-                children: ReactNode;
-              }) => JSX.Element = route.layout || NoneLayout;
+      <BrowserRouter>
+        <Routes>
+          {publicRoutes.map((route, index) => {
+            const Page = route.component;
+            const Layout: ({
+              children,
+            }: {
+              children: ReactNode;
+            }) => JSX.Element = route.layout || NoneLayout;
 
-              return (
-                <Route
-                  path={route.path}
-                  element={
+            return (
+              <Route
+                path={route.path}
+                element={
+                 
                     <Layout>
                       <Page />
                     </Layout>
-                  }
-                  key={index}
-                />
-              );
-            })}
+               
+                }
+                key={index}
+              />
+            );
+          })}
 
-            {privateRoutes.map((route, index) => {
-              const Page = route.component;
-              const Layout: ({
-                children,
-              }: {
-                children: ReactNode;
-              }) => JSX.Element = route.layout || NoneLayout;
+          {privateRoutes.map((route, index) => {
+            const Page = route.component;
+            const Layout: ({
+              children,
+            }: {
+              children: ReactNode;
+            }) => JSX.Element = route.layout || NoneLayout;
 
-              return (
-                <Route
-                  path={route.path}
-                  element={
-                    <Layout>
-                      <ProtectedRoute component={Page} />
-                    </Layout>
-                  }
-                  key={index}
-                />
-              );
-            })}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </Loader>
+            return (
+              <Route
+                path={route.path}
+                element={
+            
+                  <Layout>
+                    <ProtectedRoute component={Page} />
+                  </Layout>
+              
+                }
+                key={index}
+              />
+            );
+          })}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
 
-export default App;
+export default React.memo(App);

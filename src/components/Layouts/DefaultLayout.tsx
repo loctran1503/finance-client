@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Loader from "../Global/Loader";
 import Navbar from "../Navbar";
 
 
@@ -8,7 +9,7 @@ const DefaultLayout = ({ children }: { children: ReactNode }) => {
         <Navbar />
         <div>{children}</div>
   
-  
+        <Loader/>
       </>
     );
   };

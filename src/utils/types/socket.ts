@@ -1,7 +1,22 @@
+interface DefaultResponse{
+    code:number;
+    success:boolean;
+    message:string;
+}
+
+export interface MessageResponse extends DefaultResponse{
+    messageList?:MessageIO[],
+    hasMore?:boolean
+}
+
 export interface MessageIO{
-    userId:string,
-    avatar:string,
-    name:string,
-    message:string,
-    timestamp:string
+    content:string,
+    timestamp:Date,
+    messageId:string
+    user:{
+        userId:string
+        name:string,
+        avatar:string
+    },
+    timestampBlocking:number
 }

@@ -45,19 +45,20 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  // box-shadow: inset 0 0 2px grey;
-  border-radius: 10px;
+   box-shadow: inset 0 0 2px grey;
+   background-color: #c9d2f3;
+ 
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: black;
-  border-radius: 10px;
+  background-color: #3f64e7;
+  border-radius: 2px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: black;
+  background-color: #3f64e7;
 }
 
 

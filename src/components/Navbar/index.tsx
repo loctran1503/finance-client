@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 
 import clsx from "clsx";
@@ -8,13 +8,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import Login from "../Auth/Login";
 import SignUp from "../Auth/Signup";
-import { useAppSelector } from "../../store/hook";
-import { authSelector } from "../../store/reducers/authSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
+import { authSelector, checkAuthenticate } from "../../store/reducers/authSlice";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Navbar = () => {
   const { isAuthenticated, user } = useAppSelector(authSelector);
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    axios.defaults.withCredentials =true
+    const checkAuth = async () => {
+      dispatch(checkAuthenticate());
+    };
+    checkAuth();
+  }, []);
   return (
     <div className={styles.wrapper}>
       <div className="grid wide">

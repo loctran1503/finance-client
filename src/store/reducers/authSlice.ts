@@ -20,9 +20,7 @@ const initialState : AuthState = {
 export const checkAuthenticate = createAsyncThunk('checkAuth',async () : Promise<UserResponse> =>{
     try {
       const url = apiLink.users.checkAuth
-      const serverResult = await axios.post<UserResponse>(url,null,{
-        withCredentials:true
-      })
+      const serverResult = await axios.post<UserResponse>(url)
       axios.defaults.headers.common['Authorization']=serverResult.data.access_token
    
       
@@ -89,7 +87,7 @@ const authSlice = createSlice({
     extraReducers:(builder) =>{
       // Check Authenticate Case
       builder.addCase(checkAuthenticate.pending,(state) =>{
-        state.isLoading = true
+  
       });
       builder.addCase(checkAuthenticate.fulfilled,(state,action ) =>{
         
@@ -100,7 +98,7 @@ const authSlice = createSlice({
           
           state.access_token = action.payload.access_token as string
         }
-        state.isLoading=false
+         state.isLoading=false
       });
       // Sign Up Case
       builder.addCase(userSignup.pending,(state) =>{
