@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react'
+import  { ReactNode } from 'react'
 import './reset.scss'
 import './grid.scss'
 import './base.scss'
+import './pagnation.scss'
 
 
 const GlobalStyles = ({ children }: { children: ReactNode }) => {

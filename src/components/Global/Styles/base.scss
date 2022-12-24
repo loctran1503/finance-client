@@ -15,6 +15,7 @@
 
 * {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 html {
@@ -111,3 +112,5 @@ body {
     transform: scale(0.95);
   }
 }
+
+

@@ -7,6 +7,7 @@ import { appSelector, setSocket } from "../../store/reducers/appSlice";
 import { authSelector } from "../../store/reducers/authSlice";
 import { socketUrl } from "../../utils/api/apiLink";
 import { getMessageApi } from "../../utils/api/message";
+import { getTimeFromDate } from "../../utils/funnctions/date";
 import { MessageIO, MessageResponse } from "../../utils/types/socket";
 import styles from "./styles.module.scss";
 const ChatRoom = () => {
@@ -37,10 +38,7 @@ const ChatRoom = () => {
     getMessage();
   }, []);
 
-  useEffect(() =>{
-    console.log(messageResponse.hasMore);
-    
-  },[messageResponse.hasMore])
+
 
   useEffect(() => {
     if (!isLoading) {
@@ -153,7 +151,7 @@ const ChatRoom = () => {
                   inverse={true} //
                   hasMore={messageResponse.hasMore || false}
                   loader={<h4>Loading...</h4>}
-                  endMessage={<h4>End</h4>}
+              
                   scrollableTarget="scrollableDiv"
                 >
                   {messageResponse.messageList.length > 0 &&
@@ -162,13 +160,13 @@ const ChatRoom = () => {
                         <div key={item.messageId} className={styles.sender}>
                           <p className={styles.senderMessage}>{item.content}</p>
                           <p className={styles.timestamps}>
-                            {item.timestamp.toString()}
+                            {getTimeFromDate(item.timestamp)}
                           </p>
                         </div>
                       ) : (
                         <div className={styles.receiver} key={item.messageId}>
                           <p className={styles.timestamps}>
-                            {item.timestamp.toString()}
+                            {getTimeFromDate(item.timestamp)}
                           </p>
                           <p className={styles.receiverName}>
                             {item.user.name}:
