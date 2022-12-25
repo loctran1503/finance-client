@@ -39,10 +39,8 @@ const Navbar = () => {
                     "d-flex align-items-center"
                   )}
                 >
-                  <h3 className={styles.leftItem}>Exchanges</h3>
-                  <h3 className={styles.leftItem}>Community</h3>
-                  <h3 className={styles.leftItem}>Product</h3>
-                  <h3 className={styles.leftItem}>Learn</h3>
+                  <h3 className={styles.leftItem}>Ranking</h3>
+                
                 </div>
               </div>
               <div className={styles.navbarRight}>

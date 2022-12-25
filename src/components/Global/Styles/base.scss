@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
 
 :root {
-  --text:#333;
+  --text:#444;
   // --purple-color:#3c28e9;
-  --blue-color:#3f64e7;
+  --blue-color:#3459e7;
   --background-color:#FAFBFD;
   --blur-color:#EAEDF0;
-  --gray-color:#696969;
+  --gray-color:#808a9d;
   --pink-color:rgb(218, 37, 73);
-  --border-gray:#dbdbdb;
-  --gray-less:#f3f0f0;
+  --border-gray:#dadcdf;
+  --gray-less:#eff2f5;
+  --green-color:#4eaf0a;
+  --tear-color:#26A69A;
+  
   
 }
 
@@ -104,7 +107,7 @@ body {
 
 .btn{
   outline: none;
-  border-radius: 10px;
+  border-radius: 6px;
   padding: 8px 12px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -112,5 +115,7 @@ body {
     transform: scale(0.95);
   }
 }
+
+
 
 

@@ -1,3 +1,5 @@
+import { CryptoListUrlType } from "../types/api";
+
 //const severUrl = "http://localhost:4444/finance/api";
   const severUrl = 'https://gentlevn.com/finance/api'
 
@@ -14,10 +16,6 @@ export const apiLink = {
   },
 };
 
-interface CryptoListUrlType {
-  perPage?: number;
-  page?: number | null;
-}
 
 export const cryptoListUrl = ({ page }: CryptoListUrlType): string => {
   let url: string = "";
@@ -30,3 +28,9 @@ export const cryptoListUrl = ({ page }: CryptoListUrlType): string => {
 
   return url;
 };
+
+export const cryptoDetailUrl = (symbol : string) : string  =>{
+  return `https://api.coingecko.com/api/v3/coins/${symbol}`
+}
+
+export const cryptoGetGlobalUrl = 'https://api.coingecko.com/api/v3/global'

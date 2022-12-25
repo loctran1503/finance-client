@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.04f9a5e8.css",
-    "main.js": "/static/js/main.2ad7ac5c.js",
+    "main.css": "/static/css/main.0737e303.css",
+    "main.js": "/static/js/main.344948fa.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
     "static/media/bitcoin-logo.png": "/static/media/bitcoin-logo.82491fef997ab841639c.png",
+    "static/media/usd.png": "/static/media/usd.41620476e7995ea01ab3.png",
+    "static/media/usdt.png": "/static/media/usdt.b1e4146b3102ced5e6a5.png",
     "index.html": "/index.html",
-    "main.04f9a5e8.css.map": "/static/css/main.04f9a5e8.css.map",
-    "main.2ad7ac5c.js.map": "/static/js/main.2ad7ac5c.js.map",
+    "main.0737e303.css.map": "/static/css/main.0737e303.css.map",
+    "main.344948fa.js.map": "/static/js/main.344948fa.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.04f9a5e8.css",
-    "static/js/main.2ad7ac5c.js"
+    "static/css/main.0737e303.css",
+    "static/js/main.344948fa.js"
   ]
 }

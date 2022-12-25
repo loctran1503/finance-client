@@ -5,7 +5,8 @@ import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { authSelector, userLogout } from "../../store/reducers/authSlice";
 import { DefaultResponse } from "../../utils/types/api";
 import styles from "./styles.module.scss";
-
+import usdt from '../../assets/images/usdt.png'
+import usd from '../../assets/images/usd.png'
 const Profile = () => {
   const { user } = useAppSelector(authSelector);
   //React-router-dom
@@ -32,21 +33,33 @@ const Profile = () => {
             {user && (
               <div className={styles.container}>
                 <div className="row">
-                  <div className="col l-9 m-9 c-12">
+                  <div className="col l-12 m-12 c-12">
+                    <div className={styles.header}>
+                      <div style={{width:115}}></div>
                     <div className={styles.userProfile}>
                       <img
                         className={styles.userAvatar}
                         src={user.avatar}
                         alt=""
                       />
-                      <h3 className={styles.userName}>{user?.name}</h3>
+                      <h3 className={styles.userName}>{user.name}</h3>
                     </div>
-                  </div>
-                  <div className="col l-3 m-3 c-12">
                     <div className={styles.userController}>
-                      <button className={clsx('btn',styles.btnLogout)} onClick={handleLogout}>Log out</button>
+                      <div className={clsx('btn',styles.btnLogout)} onClick={handleLogout}>Log out</div>
+                    </div>
+                    </div>
+                    <div className={styles.body}>
+                      <h3 className={styles.title}>My Porfolio</h3>
+                     <div className={styles.porfolio}>
+                     <p className={styles.moneyType}>USD: <span>$1000 <img src={usd}/></span></p>
+                      <p className={styles.moneyType}>USDT: <span>1000 <img src={usdt}/></span></p>
+                      <h4 className={styles.subTitle}>Coins</h4>
+                     </div>
                     </div>
                   </div>
+              
+                 
+                 
                 </div>
               </div>
             )}

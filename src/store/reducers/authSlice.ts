@@ -82,7 +82,9 @@ const authSlice = createSlice({
     name:'authSlice',
     initialState,
     reducers:{
-      
+      setIsLoading(state,action){
+        state.isLoading = action.payload
+      }
     },
     extraReducers:(builder) =>{
       // Check Authenticate Case
@@ -145,7 +147,7 @@ const authSlice = createSlice({
 
 const authReducer = authSlice.reducer;
 export const authSelector = (state: RootState) => state.auth;
-export const { } =
+export const { setIsLoading} =
   authSlice.actions;
 
 export default authReducer;

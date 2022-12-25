@@ -1,0 +1,212 @@
+.wrapper{
+    padding-top: 20px;
+    background-color: var(--background-color);
+    padding-bottom: 40px;
+    min-height: 100vh;
+}
+.container{
+    margin: 0 12px;
+}
+.header{
+    margin-top: 2px;
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid var(--gray-less);
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .headerLeft{
+        display: flex;
+    align-items: center;
+    }
+    .headerRight{
+        display: flex;
+        align-items: center;
+        .btnControl{
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            min-width: 60px;
+            background-color: var(--blue-color);
+            border: none;
+            font-weight: bold;
+            color: white;
+            margin: 0 12px;
+        }
+        .btnBuy{
+            background-color: var(--green-color);
+        }
+        .btnDeactive{
+            background-color: var(--border-gray);
+            cursor: not-allowed;
+        }
+    }
+   
+   
+}
+.rank{
+  
+    border-radius: 2px;
+    padding: 2px 4px;
+    font-size: 1.2rem;
+    background-color: var(--gray-color);
+    color: white;
+    font-weight: 600;
+   
+}
+.cryptoNameAndThumb{
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-right: 1px solid var(--border-gray);
+    img{
+        width:32px;
+        height:32px;
+    }
+    h3{
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-left: 8px;
+    }
+}
+.price{
+    text-align: center;
+    width: 140px;
+    padding: 12px 0;
+    h4{
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--gray-color);
+    }
+    p{
+        margin-top: 8px;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    
+}
+.test{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--gray-color);
+    line-height: 2rem;
+    a{
+        text-decoration: none;
+        color: var(--blue-color);
+    }
+}
+
+
+
+.increase{
+    color: var(--green-color);
+}
+.decrease{
+    color: var(--pink-color);
+}
+.equal{
+    color: var(--text);
+}
+
+// Info
+
+.cryptoInfoHeader{
+    background-color: white;
+    border-radius: 4px;
+    border-top: 1px solid var(--gray-less);
+    border-bottom: 1px solid var(--gray-less);
+    .cryptoInfoHeaderContainer{
+        padding:  12px;
+        display: flex;
+        align-items: center;
+      
+        h4{
+            font-weight: 700;
+            padding: 8px 16px;
+            margin-left: 28px;
+            border-radius: 4px;
+            cursor: pointer;;
+            color: var(--text);
+            background-color: var(--gray-less);
+            &:first-child{
+                margin-left: 0;
+            }
+        }
+        .overViewActive{
+            color: white;
+            background-color: var(--blue-color) ;
+        }
+    }
+}
+
+
+// Info body
+.cryptoInfoBody{
+    padding: 16px;
+    margin: 0 12px;
+    border: 1px solid var(--border-gray);
+    border-top: none;
+    background-color: white;
+    transition: all ease 0.3s;
+    p{
+        
+        font-weight: 500;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        color: var(--text);
+        a{
+            text-decoration: none;
+        }
+    }
+    .cryptoInfoBodyOverview{
+        h4{
+            font-size: 1.5rem;
+         
+            margin-bottom: 24px;
+            color: var(--gray-color);
+            span{
+                color: var(--text);
+                font-weight: 600;
+                margin-left: 12px;
+            }
+        }
+        .cryptoInfoBodyOverViewWebsite{
+            margin-left: 8px;
+            a{
+            
+                word-wrap: break-word;
+                background-color: var(--gray-less);
+                padding: 4px 8px;
+                border-radius: 4px;
+                text-decoration: none;
+                color: var(--text);
+                margin-right: 12px;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+        .cryptoInfoBodyOverViewHomepage{
+            margin-left: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            div{
+                margin: 20px 0 0;
+                a{
+                  
+                    word-wrap: break-word;
+                    background-color: var(--gray-less);
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                    text-decoration: none;
+                    color: var(--text);
+                    margin-right: 12px;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

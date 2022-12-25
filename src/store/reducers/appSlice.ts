@@ -7,7 +7,8 @@ import { AppState } from "../../utils/types/redux";
 
 
 const initialState : AppState = {
-    socket:null
+    socket:null,
+  
 }
 
 
@@ -19,7 +20,8 @@ const appSlice = createSlice({
             if(action.payload){
                 state.socket = action.payload 
             }
-       }
+       },
+      
     },
    
     extraReducers:(builder) =>{

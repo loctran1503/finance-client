@@ -3,6 +3,7 @@ import DefaultLayout from "../components/Layouts/DefaultLayout";
 import Login from "../components/Auth/Login";
 import HomePage from "../pages/HomePage";
 import Profile from "../pages/Profile";
+import CryptoDetail from "../pages/CryptoDetail";
 
 interface IRouter {
     path: string;
@@ -11,8 +12,9 @@ interface IRouter {
   }
 
 export const publicRoutes : IRouter[]=[
-
-  {path:'/',component:HomePage ,layout: DefaultLayout}
+  {path:'/',component:HomePage ,layout: DefaultLayout},
+  {path:'/:page',component:HomePage ,layout: DefaultLayout},
+  {path:'/crypto/:id',component:CryptoDetail ,layout: DefaultLayout},
  
 ]
 

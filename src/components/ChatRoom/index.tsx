@@ -9,6 +9,7 @@ import { socketUrl } from "../../utils/api/apiLink";
 import { getMessageApi } from "../../utils/api/message";
 import { getTimeFromDate } from "../../utils/funnctions/date";
 import { MessageIO, MessageResponse } from "../../utils/types/socket";
+import Login from "../Auth/Login";
 import styles from "./styles.module.scss";
 const ChatRoom = () => {
   const { socket } = useAppSelector(appSelector);
@@ -211,6 +212,7 @@ const ChatRoom = () => {
             </div> */}
               {/* Footer */}
               <div className={styles.footer}>
+                {isAuthenticated ? <>
                 <input
                   className={styles.messageInput}
                   type="text"
@@ -231,6 +233,12 @@ const ChatRoom = () => {
                     ? messageBlockingCountDown / 1000
                     : "Send"}
                 </span>
+                </> : <div className={styles.logInRequired}>
+                  <div>
+                  Login to Chat 
+                  </div>
+                  <Login/>
+                  </div>}
               </div>
             </div>
           </div>

@@ -1,26 +1,38 @@
 .wrapper{
- 
+    margin: 0 12px;
     background-color:var(--background-color);
 }
 .container{
     min-height: 100vh;
     padding: 40px 12px;
-    background-color: white;
+ 
+}
+.header{
+ background-color: white;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-bottom: 12px;
+    border: 1px solid var(--gray-less);
+    display: flex;
+    justify-content: space-between;
+   
 }
 .userProfile{
-    display: flex;
+   padding: 4px;
     .userAvatar{
-        width: 8rem;
-        height: 8rem;
+        width: 7rem;
+        height: 7rem;
         border-radius: 50%;
         padding: 8px;
-        border: 1px solid #dbdbdb;
-
+       
     }
     .userName{
+        width: 7rem;
+        text-align: center;
         font-weight: 600;
         font-size: 1.6rem;
-        margin-left: 20px;
+     
     }
     
 }
@@ -30,9 +42,49 @@
     align-items: center;
     height: 100%;
     .btnLogout{
-        color: white;
+        color: var(--pink-color);
         font-weight: 700;
-        background-color: var(--pink-color);
         font-size: 1.4rem;
+        margin: 20px;
+        background-color: rgb(252, 233, 233);
+    }
+}
+
+.body{
+    background-color: white;
+    padding: 12px;
+      border: 1px solid var(--gray-less);
+      border-top: none;
+}
+.title{
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text);
+}
+.porfolio{
+  
+
+}
+.subTitle{
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--text);
+}
+.moneyType{
+    margin: 20px 0;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--gray-color);
+    span{
+        margin-left: 6px;
+        color: var(--text);
+        text-align: center;
+     
+        img{
+           
+            margin-left: 4px;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
     }
 }

@@ -1,5 +1,5 @@
 import { Socket } from "socket.io-client";
-import { User } from "./api";
+import { CryptoCurrency, User } from "./api";
 
 
 export interface AuthState{
@@ -10,5 +10,6 @@ export interface AuthState{
 }
 
 export interface AppState{
-    socket : Socket | null
+    socket : Socket | null;
+
 }
