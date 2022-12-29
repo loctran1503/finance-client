@@ -20,6 +20,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { formatDateToMDY } from "../../utils/funnctions/date";
+import { decimalConverterWithoutCurrency } from "../../utils/funnctions/decimal";
 
 export const options = {
 
@@ -106,8 +107,8 @@ const AllUsers = () => {
                           <td className={styles.userInfo}>{item.userId===user?.userId ? <p>Onwer</p> : <>
                             <img src={item.avatar}/> <p>{item.name}</p></>}</td>
                           <td>
-                            <p className={styles.porfolio}>USD : <span>{item.usd}</span></p>
-                            <p className={styles.porfolio}>USDT : <span>{item.usdt}</span></p>
+                            <p className={styles.porfolio}>USD : <span>{decimalConverterWithoutCurrency(item.usd)}</span></p>
+                            <p className={styles.porfolio}>USDT : <span>{decimalConverterWithoutCurrency(item.usdt)}</span></p>
                           </td>
                           <td>{getCoinNameFromList(item.coins || [])}</td>
                           <td>
