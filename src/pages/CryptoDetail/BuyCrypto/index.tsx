@@ -126,7 +126,7 @@ const BuyCrypto = ({ id, price }: BuyCryptoType) => {
           {Number.parseFloat(amount) > 0 && (
             <p className={styles.buyDescription}>
               You'll pay{" "}
-              <span className={styles.moneyHightlight}>{price * Number.parseFloat(amount)}</span>{" "}
+              <span className={styles.moneyHightlight}>{decimalConverterWithoutCurrency(price * Number.parseFloat(amount))}</span>{" "}
               USDT for {amount} {id.toUpperCase()}
             </p>
           )}
