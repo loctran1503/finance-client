@@ -7,7 +7,7 @@ export const customModalStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         borderRadius:'12px',
-      
+        transition:'all 0.2s ease'
         
       },
     overlay:{

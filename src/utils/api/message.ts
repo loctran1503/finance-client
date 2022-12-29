@@ -5,7 +5,9 @@ import { apiLink } from "./apiLink";
 export const getMessageApi =async (timestamp? : Date) : Promise<MessageResponse> =>{
     try {
 
-       const url = apiLink.users.getMessage
+       const url = apiLink.messages.findAll
+      
+       
        const result = await axios.post<MessageResponse>(url,timestamp && {
         timestamp
        })

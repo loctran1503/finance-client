@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 
 import clsx from "clsx";
-import bitcoinLogo from "../../assets/images/bitcoin-logo.png";
+import logo from "../../assets/images/logo-removebg-preview.png";
 import Search from "./Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import Login from "../Auth/Login";
 import SignUp from "../Auth/Signup";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
-import { authSelector, checkAuthenticate } from "../../store/reducers/authSlice";
+import { authSelector, checkAuthenticate, setIsLoading } from "../../store/reducers/authSlice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -32,19 +32,22 @@ const Navbar = () => {
           <div className="col l-12 m-12 c-12">
             <div className={styles.container}>
               <div className={clsx(styles.navbarLeft)}>
-                <img className={styles.logo} src={bitcoinLogo} onClick={() =>{navigate('/')}} />
+                <img className={styles.logo} src={logo} onClick={() =>{navigate('/')}} />
                 <div
                   className={clsx(
                     styles.leftItemContainer,
                     "d-flex align-items-center"
                   )}
                 >
-                  <h3 className={styles.leftItem}>Ranking</h3>
+                  <h3 className={styles.leftItem} onClick={() => {
+                    dispatch(setIsLoading(true))
+                    navigate('/all-users')
+                  }}>All Users</h3>
                 
                 </div>
               </div>
               <div className={styles.navbarRight}>
-                <div className={styles.languageContainer}>
+                {/* <div className={styles.languageContainer}>
                   <div className={styles.languageDisplay}>
                     <h3>English</h3>
                     <span className={styles.languageIcon} />
@@ -55,17 +58,13 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                <Search />
+                <Search /> */}
 
                 {isAuthenticated && (
-                  <img
-                    src={user?.avatar}
-                    alt=""
-                    className={styles.userProfile}
-                    onClick={() =>{
-                      navigate('/profile')
-                    }}
-                  />
+                  <div className={styles.userProfile} >
+                  <p onClick={() => navigate('/profile')}>{user?.name}</p>
+                  
+                  </div>
                 )}
                 {!isAuthenticated && <Login />}
                 {!isAuthenticated && <SignUp />}

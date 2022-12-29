@@ -1,0 +1,47 @@
+.convertToUSD{
+    margin-left: 24px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: var(--blue-less-color);
+    color: var(--blue-color) !important;
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+.convertToUSDT{
+    margin-left: 24px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: var(--blue-less-color);   
+    color: var(--blue-color) !important;
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+.container{
+    .header{
+        text-align: center;
+        margin: 20px 0;
+        font-weight: bold;
+        font-size: 1.6rem;
+    }
+    .btnSubmit{
+        margin-top: 20px;
+        text-align: center;
+        button{
+            border: none;
+            outline: none;
+            background-color: var(--blue-color);
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+    }
+    .convertPreview{
+        margin-top: 12px;
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+}

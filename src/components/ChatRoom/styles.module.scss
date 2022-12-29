@@ -22,21 +22,29 @@
     display: flex;
     align-items: flex-start;
 
-    .timestamps {
-      font-size: 1.4rem;
-      font-weight: 500;
-      color: #bbbaba;
-    }
+   
     .receiverName {
       font-size: 1.6rem;
       font-weight: 700;
       white-space: nowrap;
       color: var(--blue-color);
       padding: 0 10px 0 5px;
+      margin-top: 4px;
     }
     .receiverMessage {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: var(--text);
+      padding: 6px 12px;
+      line-height: 1.8rem;
+      border-radius: 20px;
+      background-color: var(--gray-less);
+      text-align: center;
+    }
+    .receiverTimestamp {
+      margin-top: 4px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #bbbaba;
     }
   }
   //Sender
@@ -46,19 +54,22 @@
     margin-left: 30%;
     display: flex;
     justify-content: flex-end;
-    .timestamps {
-      font-size: 1.4rem;
+    .senderTimetamps {
+      margin-top: 4px;
+      font-size: 1.1rem;
       font-weight: 500;
       color: #bbbaba;
-      margin-left: 8px;
+      text-align: end;
     }
 
     .senderMessage {
-      padding: 8px 16px;
-      border-radius: 16px;
-      background-color: var(--gray-less);
-      font-size: 1.6rem;
-      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 20px;
+      background-color: var(--blue-color);
+      font-size: 1.5rem;
+      line-height: 1.8rem;
+      color: white;
+      text-align: center;
     }
   }
   // Footer

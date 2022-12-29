@@ -1,18 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.0737e303.css",
-    "main.js": "/static/js/main.344948fa.js",
+    "main.css": "/static/css/main.d8ebccf7.css",
+    "main.js": "/static/js/main.3425b985.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
-    "static/media/bitcoin-logo.png": "/static/media/bitcoin-logo.82491fef997ab841639c.png",
-    "static/media/usd.png": "/static/media/usd.41620476e7995ea01ab3.png",
-    "static/media/usdt.png": "/static/media/usdt.b1e4146b3102ced5e6a5.png",
+    "static/media/logo-removebg-preview.png": "/static/media/logo-removebg-preview.c770c5d80c778e3d7bbe.png",
+    "static/media/avatar.jpg": "/static/media/avatar.d17c56de4c83e9decc0e.jpg",
+    "static/media/revicons.eot": "/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/index.html",
-    "main.0737e303.css.map": "/static/css/main.0737e303.css.map",
-    "main.344948fa.js.map": "/static/js/main.344948fa.js.map",
+    "main.d8ebccf7.css.map": "/static/css/main.d8ebccf7.css.map",
+    "main.3425b985.js.map": "/static/js/main.3425b985.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0737e303.css",
-    "static/js/main.344948fa.js"
+    "static/css/main.d8ebccf7.css",
+    "static/js/main.3425b985.js"
   ]
 }

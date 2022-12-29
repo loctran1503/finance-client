@@ -100,12 +100,14 @@
 
 .increase{
     color: var(--green-color);
+   
 }
 .decrease{
     color: var(--pink-color);
 }
 .equal{
     color: var(--text);
+    
 }
 
 // Info
@@ -148,6 +150,9 @@
     border-top: none;
     background-color: white;
     transition: all ease 0.3s;
+
+   
+    transform-origin: top center;
     p{
         
         font-weight: 500;

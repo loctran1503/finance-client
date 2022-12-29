@@ -6,13 +6,15 @@ import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { authSelector, setIsLoading } from "../../store/reducers/authSlice";
 import { getCryptoDetailApi } from "../../utils/api/crypto";
 import {
-  decimalConverter,
+ 
   decimalConverterWithoutCurrency,
 } from "../../utils/funnctions/decimal";
 import { CryptoCurrencyDetail, CryptoPricing } from "../../utils/types/api";
 import styles from "./styles.module.scss";
 import TradingChart from "./TradingChart";
 import { Tooltip } from "react-tooltip";
+import BuyCrypto from "./BuyCrypto";
+import SellCrypto from "./SellCrypto";
 
 interface OverViewType {
   name: string;
@@ -22,6 +24,7 @@ interface OverViewType {
 const CryptoDetail = () => {
   const { id } = useParams();
   const wsRef = useRef<WebSocket>();
+ 
   const dispatch = useAppDispatch();
   const { isLoading, isAuthenticated } = useAppSelector(authSelector);
   const [cryptoOverview, setCryptoOverview] = useState<OverViewType>({
@@ -52,7 +55,7 @@ const CryptoDetail = () => {
         <h4>
           Market Cap:{" "}
           <span>
-            {decimalConverter(
+            ${decimalConverterWithoutCurrency(
               cryptoInfo.market_data.market_cap.usd
             )}
           </span>
@@ -60,7 +63,7 @@ const CryptoDetail = () => {
         <h4>
           Total volume:{" "}
           <span>
-            {decimalConverter(
+            ${decimalConverterWithoutCurrency(
               cryptoInfo.market_data.total_volume.usd
             )}
           </span>
@@ -135,7 +138,7 @@ const CryptoDetail = () => {
           dispatch(setIsLoading(false));
         }
         if (result.crypto) {
-          console.log(result.crypto);
+       
           setCryptoInfo(result.crypto);
 
           const cryptoPricingWithoutWs: CryptoPricing = {
@@ -194,13 +197,16 @@ const CryptoDetail = () => {
   }, [cryptoInfo?.symbol]);
 
   const handleBuy = () => {
-    console.log(123);
+    
   };
 
   const handleOverViewChange = (name: string) => {
+
     if(cryptoInfo){
+ 
       switch (name) {
         case "Overview":
+      
           setCryptoOverview({
             ...cryptoOverview,
             name,
@@ -214,7 +220,7 @@ const CryptoDetail = () => {
             <h4>
               Market Cap:{" "}
               <span>
-                {decimalConverter(
+                ${decimalConverterWithoutCurrency(
                   cryptoInfo.market_data.market_cap.usd
                 )}
               </span>
@@ -222,7 +228,7 @@ const CryptoDetail = () => {
             <h4>
               Total volume:{" "}
               <span>
-                {decimalConverter(
+                ${decimalConverterWithoutCurrency(
                   cryptoInfo.market_data.total_volume.usd
                 )}
               </span>
@@ -286,8 +292,10 @@ const CryptoDetail = () => {
             </h4>
           </div>
           })
+       
           break;
         case "Description":
+
           setCryptoOverview({
             ...cryptoOverview,
             name,
@@ -297,10 +305,13 @@ const CryptoDetail = () => {
             }}
           ></p>
           })
+         
           break;
         default:
           break;
       }
+  
+     
     }
   };
 
@@ -336,7 +347,7 @@ const CryptoDetail = () => {
                                 : styles.decrease
                             )}
                           >
-                            {decimalConverter(cryptoPricing.c.state)}
+                            ${decimalConverterWithoutCurrency(cryptoPricing.c.state)}
                           </p>
                         </div>
 
@@ -353,7 +364,7 @@ const CryptoDetail = () => {
                                 ? styles.increase
                                 : styles.decrease
                             )}
-                          >{`${decimalConverter(cryptoPricing.p.state)}(${
+                          >${`${decimalConverterWithoutCurrency(cryptoPricing.p.state)}(${
                             cryptoPricing.P
                           }%)`}</p>
                         </div>
@@ -361,43 +372,20 @@ const CryptoDetail = () => {
                         {/* 24h high */}
                         <div className={styles.price}>
                           <h4>24H High</h4>
-                          <p>{decimalConverter(cryptoPricing.h)}</p>
+                          <p>${decimalConverterWithoutCurrency(cryptoPricing.h)}</p>
                         </div>
 
                         {/* 24h low */}
                         <div className={styles.price}>
                           <h4>24H Low</h4>
-                          <p>{decimalConverter(cryptoPricing.l)}</p>
+                          <p>${decimalConverterWithoutCurrency(cryptoPricing.l)}</p>
                         </div>
                       </div>
                       {/* header right */}
                       <div className={styles.headerRight}>
-                        <button
-                          onClick={() => {
-                            handleBuy();
-                          }}
-                          id="btn-buy"
-                          disabled={!isAuthenticated}
-                          className={clsx(
-                            "btn",
-                            styles.btnControl,
-                            styles.btnBuy,
-                            !isAuthenticated && styles.btnDeactive
-                          )}
-                        >
-                          Buy
-                        </button>
-                        {/* <Tooltip anchorId="btn-buy" content="Hello World" place="top" isOpen={!isAuthenticated}  /> */}
-                        <button
-                          disabled={!isAuthenticated}
-                          className={clsx(
-                            "btn",
-                            styles.btnControl,
-                            !isAuthenticated && styles.btnDeactive
-                          )}
-                        >
-                          Sell
-                        </button>
+                       <BuyCrypto id={cryptoInfo.id} price={cryptoInfo.market_data.current_price.usd} />
+                        <SellCrypto id={cryptoInfo.id} price={cryptoInfo.market_data.current_price.usd} />
+                     
                       </div>
                     </div>
                   )}
@@ -443,7 +431,7 @@ const CryptoDetail = () => {
           <div className="grid wide">
             <div className="row">
               <div className="col l-12 m-12 c-12">
-                <div className={styles.cryptoInfoBody}>
+                <div className={styles.cryptoInfoBody} >
                  {cryptoOverview.children}
                 </div>
               </div>

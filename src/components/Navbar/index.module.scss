@@ -16,12 +16,22 @@
       .leftItem {
         padding: 0 12px;
         font-weight: 600;
+        cursor: pointer;
+        
+        &:hover{
+          color: var(--blue-color);
+        }
       }
     }
     .logo {
+      cursor: pointer;
       width: auto;
       height: 40px;
       margin-right: 12px;
+      transition: all 0.25s ease;
+      &:hover{
+        transform: scale(1.1);
+      }
     }
     .leftItemContainer {
       height: 100%;
@@ -105,10 +115,18 @@
       
     }
     .userProfile{
-        width: 28px;
-        height: 28px;
+    
+      padding: 8px 16px;
+      border-radius: 20px;
+      background-color: white;
+      border: 1px solid var(--blue-color);
+      p{
         cursor: pointer;
-        border-radius: 50%;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--blue-color);
+      }
+        
     }
     
     

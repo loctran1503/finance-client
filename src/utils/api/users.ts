@@ -1,9 +1,9 @@
 import axios from "axios";
-import { DefaultResponse, LoginByPassWord, SignUpByPassWord, User, UserResponse } from "../types/api";
+import { DefaultResponse, LoginByPassWord, SignUpByPassWord, User, UserListResponse, UserResponse } from "../types/api";
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import { apiLink } from "./apiLink";
 import { app } from "../config/firebase";
-import logo from "../../assets/images/bitcoin-logo.png";
+import logo from "../../assets/images/avatar.jpg";
 const auth = getAuth(app);
 
 export const signUpApi = async ({
@@ -36,7 +36,7 @@ export const signUpApi = async ({
       //All thing is good
       if (serverResult.data.access_token)
         axios.defaults.headers.common["Authorization"] =
-          serverResult.data.access_token;
+          `Bearer ${serverResult.data.access_token}`;
 
       return {
         success: true,
@@ -87,7 +87,7 @@ export const loginApi = async ({
       //All thing is good
       if (serverResult.data.access_token)
         axios.defaults.headers.common["Authorization"] =
-          serverResult.data.access_token;
+         `Bearer ${ serverResult.data.access_token}`;
     
       return {
         success: true,
@@ -114,8 +114,8 @@ export const logoutApi = async() : Promise<DefaultResponse> =>{
   const url = apiLink.users.logout
   try {
     const serverResult = await axios.post<DefaultResponse>(url,{
-
     })
+    axios.defaults.headers.common["Authorization"] =null
     return{
       success:serverResult.data.success,
       code:serverResult.data.code,
@@ -129,5 +129,22 @@ export const logoutApi = async() : Promise<DefaultResponse> =>{
       message:JSON.stringify(error)
     }
   }
+}
 
+//find all users
+export const findAllUsersApi = async() : Promise<UserListResponse> =>{
+  const url = apiLink.users.findAll
+  try {
+    const serverResult = await axios.post<UserListResponse>(url,{
+    })
+    return serverResult.data
+  } catch (error) {
+    console.log(error);
+    
+    return{
+      code:500,
+      success:false,
+      message:JSON.stringify(error)
+    }
+  }
 }

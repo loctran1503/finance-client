@@ -4,6 +4,7 @@
   --text:#444;
   // --purple-color:#3c28e9;
   --blue-color:#3459e7;
+  --blue-less-color:rgb(225, 232, 245);
   --background-color:#FAFBFD;
   --blur-color:#EAEDF0;
   --gray-color:#808a9d;
@@ -12,6 +13,8 @@
   --gray-less:#eff2f5;
   --green-color:#4eaf0a;
   --tear-color:#26A69A;
+  --yellow-color:#fbd849;
+  --orange-color:#F7931A;
   
   
 }
@@ -113,6 +116,19 @@ body {
   transition: all 0.2s ease;
   &:hover{
     transform: scale(0.95);
+  }
+}
+
+.closeContainer{
+  display: flex;
+  justify-content: flex-end;
+  .closeIcon{
+    padding: 3px 6px;
+    border-radius: 50%;
+    border: 2px solid var(--gray-color);
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: var(--gray-color);
   }
 }
 

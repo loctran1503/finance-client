@@ -1,18 +1,18 @@
+import axios from "axios";
 import clsx from "clsx";
 import React, { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { io } from "socket.io-client";
-import { useAppDispatch, useAppSelector } from "../../store/hook";
-import { appSelector, setSocket } from "../../store/reducers/appSlice";
+import { io, Socket } from "socket.io-client";
+import { useAppSelector } from "../../store/hook";
 import { authSelector } from "../../store/reducers/authSlice";
-import { socketUrl } from "../../utils/api/apiLink";
+import { socketLink } from "../../utils/api/apiLink";
 import { getMessageApi } from "../../utils/api/message";
-import { getTimeFromDate } from "../../utils/funnctions/date";
+import { formatDateToMDY, getTimeFromDate } from "../../utils/funnctions/date";
 import { MessageIO, MessageResponse } from "../../utils/types/socket";
 import Login from "../Auth/Login";
 import styles from "./styles.module.scss";
 const ChatRoom = () => {
-  const { socket } = useAppSelector(appSelector);
+  const  [socket,setSocket] = useState<Socket|null>(null);
   const { user, isAuthenticated, isLoading, access_token } =
     useAppSelector(authSelector);
   const [message, setMessage] = useState("");
@@ -24,7 +24,7 @@ const ChatRoom = () => {
     message:''
   });
   const [messageBlockingCountDown, setmessageBlockingCountDown] = useState(0);
-  const dispatch = useAppDispatch();
+
   useEffect(() => {
     const getMessage = async () => {
       const serverResult = await getMessageApi();
@@ -43,9 +43,9 @@ const ChatRoom = () => {
 
   useEffect(() => {
     if (!isLoading) {
-      const socket = io(socketUrl, {
+      const socket = io(socketLink.chats.link, {
         transports: ["websocket"],
-        path: "/finance/api/socket.io",
+        path: socketLink.chats.path,
         ...(isAuthenticated
           ? {
               auth: {
@@ -55,10 +55,14 @@ const ChatRoom = () => {
           : {}),
       });
       socket.on("connect", () => {
+        console.log('socket connected');
+        
+
+        
         socket.emit("client-send-indentify", {
           name: isAuthenticated ? user?.name : "Guest",
         });
-        dispatch(setSocket(socket));
+        setSocket(socket)
       });
 
       socket.on("connect_error", (err) => console.log(err));
@@ -69,7 +73,7 @@ const ChatRoom = () => {
         socket.disconnect();
       };
     }
-  }, [isLoading]);
+  }, [isLoading,isAuthenticated]);
 
   useEffect(() => {
     if (messageBlockingCountDown > 0) {
@@ -81,8 +85,8 @@ const ChatRoom = () => {
   }, [messageBlockingCountDown]);
 
   useEffect(() => {
-    if (socket?.active) {
-      socket?.on("server-send-message", (value: MessageIO) => {
+    if ( socket && socket.active) {
+      socket.on("server-send-message", (value: MessageIO) => {
         if (value.user.userId === user?.userId) {
           setmessageBlockingCountDown(value.timestampBlocking);
         }
@@ -100,6 +104,9 @@ const ChatRoom = () => {
 
   const handleSendMessage = useCallback(() => {
     if (messageBlockingCountDown === 0) {
+        console.log(axios.defaults.headers.common);
+        
+      
       socket?.emit("client-send-message", {
         message,
       });
@@ -159,23 +166,29 @@ const ChatRoom = () => {
                     messageResponse.messageList.map((item, index) =>
                       item.user.userId === user?.userId ? (
                         <div key={item.messageId} className={styles.sender}>
+                       
+                          <div>
                           <p className={styles.senderMessage}>{item.content}</p>
-                          <p className={styles.timestamps}>
-                            {getTimeFromDate(item.timestamp)}
+                          <p className={styles.senderTimetamps}>
+                            {formatDateToMDY(new Date(item.timestamp))}
                           </p>
+                          </div>
                         </div>
                       ) : (
                         <div className={styles.receiver} key={item.messageId}>
-                          <p className={styles.timestamps}>
-                            {getTimeFromDate(item.timestamp)}
-                          </p>
+                          
                           <p className={styles.receiverName}>
-                            {item.user.name}:
+                            {item.user.name}
                           </p>
 
+                          <div>
                           <p className={styles.receiverMessage}>
                             {item.content}
                           </p>
+                          <p className={styles.receiverTimestamp}>
+                            {formatDateToMDY(new Date(item.timestamp))}
+                          </p>
+                          </div>
                         </div>
                       )
                     )}

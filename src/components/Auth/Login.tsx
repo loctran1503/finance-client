@@ -40,9 +40,10 @@ const Login = () => {
           const reduxResult = data.payload as UserResponse;
           if (reduxResult.success) {
             closeModal();
-            alert("Login Successfully!");
+            
             actions.setSubmitting(false)
             actions.resetForm()
+            window.location.reload()
           }else{
             setErrorMessage(reduxResult.message)
             actions.setSubmitting(false)
@@ -71,10 +72,10 @@ const Login = () => {
         style={customModalStyles}
       >
         <div className={styles.container}>
-          <div className={styles.closeContainer}>
+          <div className="closeContainer">
             <FontAwesomeIcon
               icon={faXmark}
-              className={styles.closeIcon}
+              className="closeIcon"
               onClick={() => closeModal()}
             />
           </div>
@@ -108,8 +109,7 @@ const Login = () => {
                   className={clsx(styles.btnSubmit)}
                   type="submit"
                   disabled={isSubmitting}
-                  onClick={() =>{console.log(123);
-                  }}
+                 
                 >
                   {isSubmitting ? 'Loading...' : 'Log In'}
                 </button>

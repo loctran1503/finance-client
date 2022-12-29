@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import { CryptoCurrency, CryptoCurrencyDetail, CryptoCurrencyDetailType, GetCryptoListType } from "../types/api";
-import { cryptoDetailUrl, cryptoGetGlobalUrl, cryptoListUrl } from "./apiLink";
+import { CryptoCurrency, CryptoCurrencyDetail, CryptoCurrencyDetailType, CryptoTrendingType, GetCryptoListType, GetCryptoTrendingType } from "../types/api";
+import { cryptoDetailUrl, cryptoGetGlobalUrl, cryptoListUrl, cryptoTrendingUrl } from "./apiLink";
 
 export const getCryptoListApi = async (
   page: number
@@ -55,6 +55,42 @@ export const getCryptoDetailApi = async (symbol : string) : Promise<CryptoCurren
       crypto:result.data,
       message:'get cryptodetail successfully'
     }
+  } catch (error) {
+    return{
+      success:false,
+      message:JSON.stringify(error),
+      code:400
+    }
+    
+  }
+}
+
+export const getCryptoTrendingApi = async () : Promise<GetCryptoTrendingType> =>{
+  const url = cryptoTrendingUrl()
+  try {
+    const result = await axios.get(url,{
+      withCredentials:false
+    })
+
+    if(Array.isArray(result.data.coins)){
+      const list : CryptoTrendingType[] = result.data.coins.map((item : any) => item.item)
+    
+      return {
+        success:true,
+        code:200,
+        message:'get crypto trending successfully',
+        cryptoList:list
+      }
+    }
+
+    return{
+      success:false,
+      code:400,
+      message:'get cryptotrending error'
+    }
+    
+    
+   
   } catch (error) {
     return{
       success:false,

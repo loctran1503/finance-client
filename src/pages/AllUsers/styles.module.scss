@@ -1,0 +1,88 @@
+.wrapper{
+    padding-top: 40px;
+    min-height: 100vh;
+    background-color: var(--background-color);
+
+}
+.container{
+    margin: 0 12px;
+    .title{
+        text-align: center;
+        margin: 20px 0 0;
+        font-size: 2.4rem;
+        font-weight: bold;
+        color: var(--blue-color);
+    }
+    .titleNotice{
+        text-align: center;
+        margin-top: 2px;
+        font-size: 1.6rem;
+        font-weight: bold;
+        margin-bottom: 32px;
+    }
+    .tableInfo{
+      
+        margin-top: 20px;
+        .table{
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+        th,td{
+       
+            text-align: left;
+        }
+        th{
+            font-size: 1.5rem;
+            font-weight: bolder;
+            padding: 16px ;
+        }
+        td{
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding: 12px 16px;
+            vertical-align: middle;
+        }
+      
+        tr{
+           
+        }
+        .tableRowBody{
+          
+            border: 1px solid #dbdbdb;
+            border-left: none;
+            border-right: none;
+            transition: all 0.2s ease;
+          &:hover{
+            transform: scale(1.02);
+            
+          }
+        }
+      .onwer{
+            
+        box-shadow: rgb(132, 185, 238) 0px 15px 15px -15px inset, rgb(163, 201, 238) 0px -15px 15px -15px inset;
+        }
+        .porfolio{
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--gray-color);
+            &:last-child{
+                margin-bottom: 0;
+            }
+            span{
+                margin-left: 4px;
+                color: var(--text);
+            }
+        }
+        .userInfo{
+            img{
+                width: 30px;
+                height: auto;
+                border-radius: 50%;
+            }
+            span{
+                margin-left: 8px;
+            }
+        }
+    }
+}

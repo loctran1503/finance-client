@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "..";
 import { apiLink } from "../../utils/api/apiLink";
+import { buyCoinApi, sellCoinApi } from "../../utils/api/coins";
 import { loginApi, signUpApi,logoutApi } from "../../utils/api/users";
-import { DefaultResponse, LoginByPassWord, SignUpByPassWord, User, UserResponse } from "../../utils/types/api";
+import { BuyOrSellCoinDto, DefaultResponse, LoginByPassWord, SignUpByPassWord, User, UserEvent, UserResponse } from "../../utils/types/api";
 import { AuthState } from "../../utils/types/redux";
 
 
@@ -21,7 +22,7 @@ export const checkAuthenticate = createAsyncThunk('checkAuth',async () : Promise
     try {
       const url = apiLink.users.checkAuth
       const serverResult = await axios.post<UserResponse>(url)
-      axios.defaults.headers.common['Authorization']=serverResult.data.access_token
+      axios.defaults.headers.common['Authorization']=`Bearer ${serverResult.data.access_token}`
    
       
       return serverResult.data
@@ -75,6 +76,34 @@ export const userLogout = createAsyncThunk('userLogout',async () : Promise<Defau
   }
 })
 
+//buy crypto
+export const buyCrypto = createAsyncThunk('buyCrypto',async (coin : BuyOrSellCoinDto) : Promise<UserResponse> =>{
+  try {
+    const result = await buyCoinApi(coin)
+    return result
+  } catch (error) {
+   return{
+      code:500,
+      success:false,
+      message:JSON.stringify(error)
+   }
+  }
+})
+
+//sell crypto
+export const sellCrypto = createAsyncThunk('sellCrypto',async (coin : BuyOrSellCoinDto) : Promise<UserResponse> =>{
+  try {
+    const result = await sellCoinApi(coin)
+    return result
+  } catch (error) {
+   return{
+      code:500,
+      success:false,
+      message:JSON.stringify(error)
+   }
+  }
+})
+
 
 
 
@@ -84,7 +113,19 @@ const authSlice = createSlice({
     reducers:{
       setIsLoading(state,action){
         state.isLoading = action.payload
-      }
+      },
+      setUserMoneyAndEvents(state,action){
+        if(state.user){
+          const events : UserEvent[] = action.payload.events
+          state.user={
+            ...state.user,
+            usd:action.payload.usd,
+            usdt:action.payload.usdt,
+            events
+          }
+        }
+      },
+      
     },
     extraReducers:(builder) =>{
       // Check Authenticate Case
@@ -99,6 +140,30 @@ const authSlice = createSlice({
          
           
           state.access_token = action.payload.access_token as string
+        }
+         state.isLoading=false
+      });
+      // buy crypto
+      builder.addCase(buyCrypto.pending,(state) =>{
+        state.isLoading=true
+      });
+      builder.addCase(buyCrypto.fulfilled,(state,action ) =>{
+        if(action.payload.success && action.payload.user){
+          state.user = action.payload.user as User;
+          console.log(action.payload);
+          
+        }
+         state.isLoading=false
+      });
+       // sell crypto
+       builder.addCase(sellCrypto.pending,(state) =>{
+        state.isLoading=true
+      });
+      builder.addCase(sellCrypto.fulfilled,(state,action ) =>{
+        if(action.payload.success && action.payload.user){
+          state.user = action.payload.user as User;
+          console.log(action.payload);
+          
         }
          state.isLoading=false
       });
@@ -147,7 +212,7 @@ const authSlice = createSlice({
 
 const authReducer = authSlice.reducer;
 export const authSelector = (state: RootState) => state.auth;
-export const { setIsLoading} =
+export const { setIsLoading,setUserMoneyAndEvents} =
   authSlice.actions;
 
 export default authReducer;

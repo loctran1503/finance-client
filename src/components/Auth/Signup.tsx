@@ -41,10 +41,11 @@ const SignUp = () => {
       if (data.payload) {
         const reduxResult = data.payload as UserResponse;
         if (reduxResult.success) {
-          alert("Registing Successfully!");
+        
           actions.setSubmitting(false)
           actions.resetForm()
           closeModal();
+          window.location.reload()
         }else{
           setErrorMessage(reduxResult.message)
           actions.setSubmitting(false)
@@ -73,10 +74,10 @@ const SignUp = () => {
         style={customModalStyles}
       >
         <div className={styles.container}>
-          <div className={styles.closeContainer}>
+          <div className="closeContainer">
             <FontAwesomeIcon
               icon={faXmark}
-              className={styles.closeIcon}
+              className="closeIcon"
               onClick={() => closeModal()}
             />
           </div>

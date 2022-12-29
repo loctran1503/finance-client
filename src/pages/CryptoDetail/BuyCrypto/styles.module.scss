@@ -1,0 +1,71 @@
+.btnControl{
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    min-width: 60px;
+    background-color: var(--blue-color) !important;
+    border: none;
+    font-weight: bold;
+    color: white;
+    margin: 0 12px;
+}
+.btnBuy{
+    background-color: var(--green-color) !important;
+}
+.btnDeactive{
+    background-color: var(--border-gray) !important;
+    cursor: not-allowed !important;
+}
+.container{
+    max-width: 560;
+
+    padding: 20px;
+    .header{
+        text-align: center;
+        margin: 20px 0;
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .porfolioAmount{
+        font-weight: 600;
+        margin: 12px 0 28px  ;
+        font-size: 1.5rem;
+        
+        span{
+            margin-left: 4px;
+            font-size: 1.7rem;
+            color: var(--orange-color);
+        }
+    }
+    .buyDescription{
+        margin: 20px 0 8px;
+        font-weight: 600;
+        font-size: 1.6rem;
+        .moneyHightlight{
+            color: var(--orange-color);
+        }
+    }
+    .notice{
+        color: var(--pink-color);
+        margin-top: 2px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-left: 2px;
+    }
+    .btnSubmit{
+        text-align: center;
+        margin-top: 40px;
+       
+        button{
+            border: none;
+            outline: none;
+            background-color: var(--green-color);
+            color: white;
+            font-weight: 700;
+            min-width: 80px;
+        }
+    }
+}
+.labelCustom{
+    text-transform: capitalize;
+}

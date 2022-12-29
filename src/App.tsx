@@ -11,9 +11,7 @@ import { authSelector } from "./store/reducers/authSlice";
 
 function App() {
 
-  useEffect(() => {
-    //console.log("App rendering");
-  });
+
 
   return (
     <>
